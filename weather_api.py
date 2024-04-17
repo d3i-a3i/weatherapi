@@ -15,6 +15,7 @@ WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?q=Montpellier&app
 
 @app.get("/compare_temperature/{input_temperature}")
 @CORSMiddleware(
+    app=app,
     allow_origins=["https://s3i-flutter.web.app"],
     allow_credentials=True,
     allow_methods=["GET"],
