@@ -4,23 +4,20 @@ import httpx
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:44337"],
-    allow_credentials=True,
-    allow_methods=["GET"],
-    allow_headers=["*"],
-)
-
-API_KEY = "107fe439bfbba6d710d6d43c4da562f8"
-WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?q=Montpellier&appid=" + API_KEY + "&units=metric"
-
-@app.get("/compare_temperature/{input_temperature}")
-@CORSMiddleware(
-    app=app,
+app=app,
     allow_origins=["https://s3i-flutter.web.app"],
     allow_credentials=True,
     allow_methods=["GET"],
     allow_headers=["*"],
 )
+
+
+
+API_KEY = "107fe439bfbba6d710d6d43c4da562f8"
+WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?q=Montpellier&appid=" + API_KEY + "&units=metric"
+
+@app.get("/compare_temperature/{input_temperature}")
+
 async def compare_temperature(input_temperature: float):
     async with httpx.AsyncClient() as client:
         try:
