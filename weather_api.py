@@ -2,15 +2,14 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import httpx
 app = FastAPI()
+origins = [ "https://s3i-flutter.web.app", ]
 app.add_middleware(
-    CORSMiddleware,
-app=app,
-    allow_origins=["https://s3i-flutter.web.app"],
-    allow_credentials=True,
-    allow_methods=["GET"],
-    allow_headers=["*"],
-)
-
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
 API_KEY = "107fe439bfbba6d710d6d43c4da562f8"
